@@ -1,9 +1,5 @@
 print ('Hello and welcome to the "Handy-Dandy Ultimate Get r Done to-do list application"!!!')
 
-# This wonderfully handy application will help you get more dont then you ever have before!
-# the application will sort and organize all of your task so that you can easily know what 
-# you need to get done and track with tasks you have completed!
-
 
 def mark_as_complete():
     for task in task_list['incomplete']:
@@ -37,39 +33,37 @@ def rem_incomplete_task():
     for task in task_list["incomplete"]:
         print(task)
         print("would you like to remove task")
-        remove = int(input("1 = Yes, 2 = No: "))
+    remove = int(input("1 = Yes, 2 = No: "))
     # valueError when using non-numeric character
     # Raise ValueError when selecting number outside of range 
-    if option == 1:
-        if remove == 1:
-            task_list["incomplete"],remove(task)
-            print(f"({task}) has been removed from you list.")
+    if remove == 1:
+        task_list["incomplete"].remove(task)
+        print(f"({task}) has been removed from you list.")
 
 
 def rem_complete_task():
-    while true:
+    while True:
         try:
             for task in task_list["complete"]:
                 print(task)
-                print("would you like to remove task")
-                remove = int(input("1 = Yes, 2 = No: "))
-                if option not in [1,2]:
-                    raise ValueError
+            print("would you like to remove task")
+            remove = int(input("1 = Yes, 2 = No: "))
+            if option not in [1,2]:
+                print("invalid response please use (1 or 2)")
+            elif remove == 1:
+                    task_list["complete"].remove(task)
+                    print(f"({task}) has been removed from you list.")
+                    break
         except ValueError:
             print("invalid response please use (1 or 2)")
     # valueError when using non-numeric character
     # Raise ValueError when selecting number outside of range 
-        else:
-            if option == 1:
-                if remove == 1:
-                    task_list["complete"],remove(task)
-                    print(f"({task}) has been removed from you list.")
-                    break
+        
 
 
 
 
-task_list = {"incomplete": [], "complete": []}
+task_list = {"incomplete": [], "complete": ["buy new shoes"]}
 
 
 
@@ -88,6 +82,27 @@ while True:
         option = int(input('Which option would you like to choose( please respond with only 1,2,3,4 or 5): '))
         if option not in [1,2,3,4,5]:
             raise ValueError
+        elif option == 1:
+            new_task =input("what task would you like too add?: ")
+            add_tasks()
+        elif option == 2:
+            print("Here are that tasks you have so far. ")
+            view_tasks()
+
+        elif option == 3:
+            print('which tasks would you like to mark as complete?')
+            mark_as_complete()
+
+        elif option == 4:
+            print('Do you wish to delete a complete or incomplete task?')
+            list= int(input("1 = incomplete , 2 = complete: "))
+            if option not in [1,2]:
+                print("invalid response please use (1 or 2)")
+                raise ValueError
+            elif option == 1:
+                rem_incomplete_task()
+            elif option == 2:
+                rem_complete_task()
     except ValueError:
         print("invalid response please use (1,2,3,4 or 5)")
 
@@ -109,9 +124,13 @@ while True:
         print('Do you wish to delete a complete or incomplete task?')
         list= int(input("1 = incomplete , 2 = complete: "))
         if option not in [1,2]:
+            print("invalid response please use (1 or 2)")
             raise ValueError
+        elif option == 1:
+            rem_incomplete_task()
+        elif option == 2:
+            rem_complete_task()
     #except ValueError:
-        print("invalid response please use (1 or 2)")
 
     # valueError when using non-numeric character
     # Raise ValueError when selecting number outside of range 
@@ -124,3 +143,7 @@ while True:
     elif option == 5:
         print("all right good work time to Get'r done!")
         break
+
+# Had some issue with my code when i tried to impement the error handling method we learned about last class 
+# Im submiting what i have completed so far will update with complete assignment asap.
+# i appogize for not completing the assgnment be the date it was due.
